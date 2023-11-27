@@ -1,0 +1,9 @@
+[package]
+name = "filaco_gateway"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7" }
+dotenvy = { version = "0.15" }
+tokio = { version = "1", features = ["full"] }

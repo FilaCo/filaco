@@ -1,0 +1,17 @@
+.husky/
+.svelte-kit/
+build/
+node_modules/
+src/**/*.{test,spec}.{js,ts}
+test-results/
+tests/
+.dockerignore
+.eslintignore
+.eslintrc.cjs
+.gitignore
+.npmrc
+.prettierignore
+.prettierrc
+Dockerfile
+playwright.config.ts
+README.md
