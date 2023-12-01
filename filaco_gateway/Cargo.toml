@@ -4,6 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+async-graphql = { version = "6" }
+async-graphql-axum = { version = "6" }
 axum = { version = "0.7" }
 dotenvy = { version = "0.15" }
+filaco_ddd = { path = "../filaco_ddd" }
 tokio = { version = "1", features = ["full"] }
+tracing = { version = "0.1" }
+tracing-subscriber = { version = "0.3" }
