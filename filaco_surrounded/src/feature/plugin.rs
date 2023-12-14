@@ -1,6 +1,5 @@
-use crate::feature::player::PlayerPlugin;
-use bevy::app::{App, Plugin};
-use bevy::DefaultPlugins;
+use bevy::prelude::*;
+use bevy_rapier3d::prelude::*;
 
 pub struct SurroundedPlugin;
 
@@ -12,7 +11,8 @@ impl SurroundedPlugin {
 
 impl Plugin for SurroundedPlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugins((DefaultPlugins, PlayerPlugin));
+        app.add_plugins(DefaultPlugins)
+            .add_plugins(RapierPhysicsPlugin::<NoUserData>::default());
     }
 }
 

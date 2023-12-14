@@ -1,4 +1,4 @@
-use bevy::prelude::App;
+use bevy::prelude::*;
 use filaco_surrounded::feature::SurroundedPlugin;
 
 fn main() {
