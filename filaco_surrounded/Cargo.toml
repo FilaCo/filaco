@@ -7,6 +7,8 @@ edition = "2021"
 bevy = { version = "0.12"}
 bevy_pkv = { version = "0.9" }
 bevy_rapier3d = { version = "0.23" }
+log = { version = "0.4" }
+log4rs = { version = "1" }
 
 [profile.dev]
 opt-level = 1
