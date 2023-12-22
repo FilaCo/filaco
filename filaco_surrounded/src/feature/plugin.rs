@@ -23,8 +23,8 @@ impl Plugin for SurroundedPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugins(DefaultPlugins)
             .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
-            .add_plugins(LogPlugin)
-            .add_plugins(MapPlugin)
-            .add_plugins(MovementPlugin);
+            // .add_plugins(MapPlugin)
+            // .add_plugins(MovementPlugin)
+        ;
     }
 }

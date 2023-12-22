@@ -1,4 +1,3 @@
-mod logging;
 mod map;
 mod movement;
 mod plugin;
