@@ -1,9 +1,10 @@
-use crate::feature::logging::LogPlugin;
+use crate::feature::creep::CreepPlugin;
+use crate::feature::ding_ding::DingDingPlugin;
 use crate::feature::map::MapPlugin;
-use crate::feature::movement::MovementPlugin;
+use crate::feature::stranger::StrangerPlugin;
 use bevy::prelude::{App, Plugin};
 use bevy::DefaultPlugins;
-use bevy_rapier3d::prelude::{NoUserData, RapierPhysicsPlugin};
+use bevy_rapier3d::prelude::{NoUserData, RapierDebugRenderPlugin, RapierPhysicsPlugin};
 
 pub struct SurroundedPlugin;
 
@@ -23,8 +24,10 @@ impl Plugin for SurroundedPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugins(DefaultPlugins)
             .add_plugins(RapierPhysicsPlugin::<NoUserData>::default())
-            // .add_plugins(MapPlugin)
-            // .add_plugins(MovementPlugin)
-        ;
+            .add_plugins(RapierDebugRenderPlugin::default())
+            .add_plugins(CreepPlugin)
+            .add_plugins(DingDingPlugin)
+            .add_plugins(MapPlugin)
+            .add_plugins(StrangerPlugin);
     }
 }

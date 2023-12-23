@@ -1,22 +1,20 @@
 use bevy::app::App;
 use bevy::prelude::Plugin;
 
-pub struct MapPlugin;
+pub struct InputPlugin;
 
-impl MapPlugin {
+impl InputPlugin {
     pub fn new() -> Self {
         Self {}
     }
 }
 
-impl Default for MapPlugin {
+impl Default for InputPlugin {
     fn default() -> Self {
         Self::new()
     }
 }
 
-impl Plugin for MapPlugin {
-    fn build(&self, app: &mut App) {
-        todo!()
-    }
+impl Plugin for InputPlugin {
+    fn build(&self, app: &mut App) {}
 }
