@@ -1,6 +1,7 @@
-use bevy::app::App;
+use bevy::input::mouse::MouseMotion;
 use bevy::prelude::{
-    default, Camera3dBundle, Commands, Component, Plugin, Startup, Transform, Vec3,
+    default, App, Camera3dBundle, Commands, Component, EventReader, Plugin, Startup, Transform,
+    Vec3,
 };
 
 pub struct CameraPlugin;
@@ -24,15 +25,15 @@ impl Plugin for CameraPlugin {
 }
 
 #[derive(Component)]
-struct InGameCamera;
+pub struct InGameCamera;
 
 #[derive(Component)]
-struct MenuCamera;
+pub struct MenuCamera;
 
 fn setup_camera(mut commands: Commands) {
     commands
         .spawn(Camera3dBundle {
-            transform: Transform::from_xyz(-3.0, 3.0, 20.0).looking_at(Vec3::ZERO, Vec3::Y),
+            transform: Transform::from_xyz(-3.0, 5.0, 0.).looking_at(Vec3::ZERO, Vec3::Y),
             ..default()
         })
         .insert(InGameCamera);

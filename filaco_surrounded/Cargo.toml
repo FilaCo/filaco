@@ -5,8 +5,10 @@ edition = "2021"
 
 [dependencies]
 bevy = { version = "0.12"}
+bevy_editor_pls = { version = "0.6" }
 bevy_pkv = { version = "0.9" }
 bevy_rapier3d = { version = "0.23" }
+leafwing-input-manager = { version = "0.11" }
 
 [profile.dev]
 opt-level = 1

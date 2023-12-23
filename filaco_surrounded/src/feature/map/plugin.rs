@@ -37,7 +37,7 @@ fn setup_map(
             ..default()
         })
         .insert(RigidBody::Fixed)
-        .insert(Collider::cuboid(50., 50., 5.));
+        .insert(Collider::cuboid(50., 5., 50.));
 
     commands.spawn(PointLightBundle {
         point_light: PointLight {
