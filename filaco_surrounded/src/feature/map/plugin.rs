@@ -1,7 +1,7 @@
 use bevy::app::App;
 use bevy::prelude::{
-    default, shape, Assets, Color, Commands, Mesh, PbrBundle, Plugin, PointLight, PointLightBundle,
-    ResMut, StandardMaterial, Startup, Transform,
+    default, shape, Assets, BuildChildren, Color, Commands, Mesh, PbrBundle, Plugin, PointLight,
+    PointLightBundle, ResMut, SpatialBundle, StandardMaterial, Startup, Transform, Visibility,
 };
 use bevy_rapier3d::prelude::{Collider, RigidBody};
 
@@ -31,13 +31,21 @@ fn setup_map(
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     commands
-        .spawn(PbrBundle {
+        .spawn(SpatialBundle {
+            visibility: Visibility::Visible,
+            ..default()
+        })
+        .insert(PbrBundle {
             mesh: meshes.add(shape::Plane::from_size(50.).into()),
             material: materials.add(Color::SILVER.into()),
             ..default()
         })
         .insert(RigidBody::Fixed)
-        .insert(Collider::cuboid(50., 5., 50.));
+        .with_children(|child| {
+            child
+                .spawn(Collider::cuboid(25., 1., 25.))
+                .insert(Transform::from_xyz(0., -1., 0.));
+        });
 
     commands.spawn(PointLightBundle {
         point_light: PointLight {
