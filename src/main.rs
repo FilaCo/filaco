@@ -1,4 +1,6 @@
+use filaco::{Filaco, FilacoResult};
+
 #[tokio::main]
-async fn main() {
-    println!("Hello, world!");
+async fn main() -> FilacoResult<()> {
+    Filaco::default().run().await
 }
