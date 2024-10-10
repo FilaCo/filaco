@@ -1,5 +1,5 @@
-import { Typography } from "./components/atoms"
-
-const Home = () => <Typography variant="h1">Hello, Home!</Typography>
+const Home = () => {
+  return <h1>Hello, world!</h1>
+}
 
 export default Home

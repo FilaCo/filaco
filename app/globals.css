@@ -1,3 +1,11 @@
+:root {
+  --color-dark-gunmetal: #171730;
+  --color-mustard: #FFDB58;
+  --color-lavender-grey: #C2C2CE;
+  --color-phillipine-grey: #8D8D8D;
+}
+
+
 * {
   box-sizing: border-box;
 }
