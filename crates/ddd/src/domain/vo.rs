@@ -1,3 +1,1 @@
-pub trait VO {
-    type Error;
-}
+pub trait VO: Clone + PartialEq {}
