@@ -1,7 +1,7 @@
-use crate::prelude::v1::{Version, VO};
+use crate::prelude::v1::*;
 
 pub trait Entity: Eq + PartialEq + Send + Sync {
-    type Id: Eq + PartialEq + VO + Send + Sync;
+    type Id: Eq + VO + Send + Sync;
 
     type Event: Send;
 
@@ -10,8 +10,4 @@ pub trait Entity: Eq + PartialEq + Send + Sync {
     fn apply_single(&mut self, event: Self::Event) {
         self.apply(&[event]);
     }
-
-    fn id(&self) -> &Self::Id;
-
-    fn version(&self) -> &Version;
 }

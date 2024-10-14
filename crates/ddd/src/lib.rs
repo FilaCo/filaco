@@ -1,11 +1,12 @@
-mod app;
-mod domain;
+mod aggregate_root;
+mod command;
+mod entity;
+mod query;
+mod version;
+mod vo;
 
 pub mod prelude {
     pub mod v1 {
-        pub use crate::{
-            app::{Command, Query},
-            domain::{AggregateRoot, Entity, Version, VO},
-        };
+        pub use crate::{aggregate_root::*, command::*, entity::*, query::*, version::*, vo::*};
     }
 }

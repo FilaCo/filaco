@@ -1,4 +1,4 @@
-use crate::prelude::v1::VO;
+use crate::prelude::v1::*;
 use thiserror::Error;
 
 pub const MIN_VERSION: u64 = 1;

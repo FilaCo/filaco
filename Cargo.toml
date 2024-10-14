@@ -9,6 +9,11 @@ members = [
     "crates/*"
 ]
 
+[workspace.dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = { version = "1" }
+uuid = { version = "1", features = ["serde", "fast-rng", "v4", "v7"] }
+
 [lib]
 crate-type = ["cdylib", "rlib"]
 
@@ -23,7 +28,7 @@ tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 tower = { version = "0.4", optional = true, features = ["util"] }
 tower-http = { version = "0.5", features = ["fs"], optional = true }
 wasm-bindgen = { version = "=0.2.93" }
-thiserror = { version = "1" }
+thiserror = { workspace = true }
 tracing = { version = "0.1", optional = true }
 http = { version = "1" }
 

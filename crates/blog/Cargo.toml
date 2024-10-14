@@ -6,3 +6,8 @@ edition = "2021"
 [dependencies]
 ddd = { path = "../ddd" }
 ddd_derive = { path = "../ddd_derive" }
+
+chrono = { workspace = true }
+thiserror = { workspace = true }
+uuid = { workspace = true }
+

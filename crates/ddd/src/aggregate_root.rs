@@ -1,3 +1,3 @@
-use crate::prelude::v1::Entity;
+use crate::prelude::v1::*;
 
 pub trait AggregateRoot: Entity {}

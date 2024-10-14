@@ -1,3 +1,3 @@
-mod aggregate_root;
-mod entity;
-mod vo;
+mod app;
+mod domain;
+mod infra;
