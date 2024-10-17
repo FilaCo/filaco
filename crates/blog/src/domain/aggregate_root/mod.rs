@@ -1,4 +1,5 @@
 mod blog;
-pub mod post;
+mod post;
 
 pub use blog::*;
+pub use post::*;

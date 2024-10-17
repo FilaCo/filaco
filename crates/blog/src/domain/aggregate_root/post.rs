@@ -1,3 +1,4 @@
+use crate::domain::aggregate_root::Blog;
 use crate::domain::entity::{Attachment, Comment, Reaction};
 use crate::domain::vo::post::*;
 use crate::domain::vo::{attachment, comment, reaction};
@@ -9,6 +10,7 @@ use thiserror::Error;
 #[derive(Debug, Eq)]
 pub struct Post {
     id: Id,
+    blog: Blog,
     created_at: DateTime<Local>,
     updated_at: Option<DateTime<Local>>,
     version: Version,
