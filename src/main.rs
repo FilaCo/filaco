@@ -1,38 +1,49 @@
-#[cfg(feature = "ssr")]
+use axum::extract::FromRef;
+use axum::routing::get;
+use axum::{serve, Router};
+use filaco::{portfolio, CommandHandler, FilacoSocketAddr, QueryHandler};
+use std::net::SocketAddr;
+use std::sync::Arc;
+use tokio::net::TcpListener;
+use yadi::Container;
+
 #[tokio::main]
-async fn main() {
-    use axum::Router;
-    use filaco::app::*;
-    use filaco::fileserv::file_and_error_handler;
-    use leptos::*;
-    use leptos_axum::{generate_route_list, LeptosRoutes};
+async fn main() -> anyhow::Result<()> {
+    let config = Container::builder()
+        .register_lazy::<FilacoSocketAddr>()
+        .register_lazy::<CommandHandler>()
+        .register_lazy::<QueryHandler>()
+        .build()?;
 
-    // Setting get_configuration(None) means we'll be using cargo-leptos's env values
-    // For deployment these variables are:
-    // <https://github.com/leptos-rs/start-axum#executing-a-server-on-a-remote-machine-without-the-toolchain>
-    // Alternately a file can be specified such as Some("Cargo.toml")
-    // The file would need to be included with the executable when moved to deployment
-    let conf = get_configuration(None).await.unwrap();
-    let leptos_options = conf.leptos_options;
-    let addr = leptos_options.site_addr;
-    let routes = generate_route_list(App);
+    let addr: SocketAddr = (*config.resolve::<FilacoSocketAddr>()).into();
+    let listener = TcpListener::bind(addr).await?;
 
-    // build our application with a route
-    let app = Router::new()
-        .leptos_routes(&leptos_options, routes, App)
-        .fallback(file_and_error_handler)
-        .with_state(leptos_options);
+    let state = FilacoState(Arc::new(config));
 
-    let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
-    logging::log!("listening on http://{}", &addr);
-    axum::serve(listener, app.into_make_service())
-        .await
-        .unwrap();
+    let app = Router::new().route("/", get(portfolio)).with_state(state);
+
+    serve(listener, app).await?;
+
+    Ok(())
 }
 
-#[cfg(not(feature = "ssr"))]
-pub fn main() {
-    // no client-side main function
-    // unless we want this to work with e.g., Trunk for a purely client-side app
-    // see lib.rs for hydration function instead
+#[derive(Clone)]
+struct FilacoState(Arc<Container>);
+
+impl FromRef<FilacoState> for Arc<Container> {
+    fn from_ref(input: &FilacoState) -> Self {
+        input.0.clone()
+    }
+}
+
+impl FromRef<FilacoState> for Arc<CommandHandler> {
+    fn from_ref(input: &FilacoState) -> Self {
+        input.0.resolve::<CommandHandler>()
+    }
+}
+
+impl FromRef<FilacoState> for Arc<QueryHandler> {
+    fn from_ref(input: &FilacoState) -> Self {
+        input.0.resolve::<QueryHandler>()
+    }
 }
