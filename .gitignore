@@ -1,5 +1,2 @@
-/node_modules/
-/target/
-.env
-.env.*
-!.env.example
+node_modules
+/target
