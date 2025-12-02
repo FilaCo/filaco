@@ -2,8 +2,6 @@
 
 ### A software engineer
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=FilaCo&label=Profile views&color=0e75b6&style=flat" alt="FilaCo" /> </p>
-
 - 🔭 I'm currently working on **the icy shell**
 
 - 🌱 I'm currently learning **Programming languages design**
