@@ -2,7 +2,7 @@
 
 ### A software engineer
 
-- 🔭 I'm currently working on **the icy shell**
+- 🔭 I'm currently working on **Cangjie Programming Language**
 
 - 🌱 I'm currently learning **Programming languages design**
 
